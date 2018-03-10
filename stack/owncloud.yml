@@ -1,0 +1,23 @@
+version: "3.2"
+services:
+  owncloud:
+    image: owncloud
+    ports:
+      - target: 80
+        published: 8000
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: owncloud
+        target: /var/www/html
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.labels.owncloud==true
+volumes:
+  owncloud:
+

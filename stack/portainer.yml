@@ -1,0 +1,36 @@
+version: "3.2"
+services:
+  portainer:
+    image: portainer/portainer
+    ports:
+      - target: 9000
+        published: 9000
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: //var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: volume
+        source: portainer
+        target: /data
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+    command: "-H unix:///var/run/docker.sock"
+
+  httpd:
+    image: httpd
+    volumes:
+      - type: volume
+        source: httpd
+        target: /usr/local/apache2/htdocs/
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+volumes:
+  portainer:
+  httpd:
+
