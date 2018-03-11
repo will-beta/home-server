@@ -1,0 +1,20 @@
+version: "3.4"
+services:
+openvpn:
+    image: luisehk/openvpn-client
+    net: host
+    volumes:
+      - type: volume
+        source: openvpn
+        target: /vpn
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+
+volumes:
+  openvpn:
