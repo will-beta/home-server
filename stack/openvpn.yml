@@ -1,21 +1,17 @@
-services:
-  openvpn:
-    image: luisehk/openvpn-client
-    network_mode: host
-    volumes:
-      - type: volume
-        source: openvpn
-        target: /vpn
-    deploy:
-      mode: global
-      restart_policy:
-        condition: any
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - "/dev/net/tun"
-    labels:
-      io.rancher.os.scope: "system"
-
-volumes:
-  openvpn:
+openvpn:
+  image: luisehk/openvpn-client
+  network_mode: host
+  volumes:
+    - type: bind
+      source : /vpn
+      target : /vpn
+  deploy:
+    mode: global
+    restart_policy:
+      condition: /any
+  cap_add:
+    - NET_ADMIN
+  devices:
+    - "/dev/net/tun"
+  labels:
+    io.rancher.os.scope: "system"
