@@ -1,5 +1,5 @@
 services:
-openvpn:
+  openvpn:
     image: luisehk/openvpn-client
     network_mode: host
     volumes:
