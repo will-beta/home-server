@@ -1,0 +1,17 @@
+version: "3.4"
+services:
+  dnspod:
+    image: willbeta/dnspod-ddns
+    volumes:
+      - type: volume
+        source: dnspod
+        target: /etc/dnspod
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.labels.dnspod==true
+volumes:
+  dnspod:
