@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   samba:
-    image: willbeta/samba:arm64
+    image: willbeta/samba:aarch64
     ports:
       - target: 137
         published: 137
