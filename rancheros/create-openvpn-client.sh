@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# make sure of the existence of "/home/rancher/vpn/vpn.conf"
 sudo system-docker run \
   --name openvpn-client \
   --detach \
