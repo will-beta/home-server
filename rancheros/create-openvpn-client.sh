@@ -1,11 +1,12 @@
 #! /bin/bash
 
-sudo system-docker run -d \
+sudo system-docker run \
   --name openvpn-client \
-  --cap_add NET_ADMIN \
-  --devices /dev/net/tun \
-  --volume /home/rancher/vpn:/vpn \
-  --network host \
-  --restart always \
+  --detach \
+  --cap-add=NET_ADMIN \
+  --device=/dev/net/tun \
+  --volume=/home/rancher/vpn:/vpn \
+  --net=host \
+  --restart=always \
   luisehk/openvpn-client
   
